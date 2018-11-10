@@ -31,7 +31,7 @@ public class Scrambler {
      */
     private static int[] toFreq(String string) {
         int[] freq = new int[26];
-        for (char c : string.toCharArray()) {
+        for (char c : string.toLowerCase().toCharArray()) {
             if ((c - 'a') >= 0 && (c - 'a') < 26) {
                 freq[c - 'a']++;
             }

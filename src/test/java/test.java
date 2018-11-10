@@ -1,5 +1,13 @@
 import org.aion.decryption.KeywordCipher;
+import org.aion.decryption.Scrambler;
+import org.aion.decryption.WordFind;
 import org.testng.annotations.Test;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class test {
 
@@ -12,11 +20,24 @@ public class test {
 
 //        InputStream resource = getClass().getResourceAsStream("words/words_alpha.txt");
 
-//        Scrambler.findOptions("glanoity", new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("words/words_alpha.txt"), StandardCharsets.UTF_8)).lines().collect(Collectors.toList()));
+//        Scrambler.findOptions("GLANOITY", new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("words/words_alpha.txt"), StandardCharsets.UTF_8)).lines().collect(Collectors.toList()));
+//
+//        System.out.println(new KeywordCipher().encrypt("glanoity", "designatory"));
+//
+//        System.out.println(new KeywordCipher().decrypt("ABDFHOPX", "designatory"));
+//
+//        System.out.println(new WordFind().findWord(".....n..o.y*"));
 
-        String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "r", "x", "y", "z"};
+        List<String> keywords = new WordFind().findWord(".....n.....");
 
-        System.out.println(new KeywordCipher().cipherKeyWord("designatory", letters));
+        List<String> words = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("words/words_alpha.txt"), StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
+
+        for (String keyword : keywords) {
+
+            String decryptedText = new KeywordCipher().decrypt("ABDFHOPX", keyword);
+
+            Scrambler.findOptions(decryptedText, words);
+        }
 
     }
 

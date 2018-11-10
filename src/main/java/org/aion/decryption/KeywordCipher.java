@@ -37,7 +37,7 @@ public class KeywordCipher {
             newEnc = newValue.charAt(valEnc);
             encrypted += newEnc;
         }
-        return encrypted.toUpperCase();
+        return encrypted.toLowerCase();
     }
 
     public String decrypt(String text, String key) {
@@ -73,7 +73,7 @@ public class KeywordCipher {
             newEnc = alphabet.charAt(valEnc);
             decrypted += newEnc;
         }
-        return decrypted.toUpperCase();
+        return decrypted.toLowerCase();
     }
 
 }
