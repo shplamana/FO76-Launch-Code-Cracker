@@ -1,4 +1,4 @@
-package gui;
+package org.aion;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
