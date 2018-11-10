@@ -2,15 +2,22 @@ package org.aion.decryption;
 
 import java.util.List;
 
+/**
+ * Takes the deciphered text and unscrambles it into possible words.
+ * <p>
+ * Credit where it's due for the algorithm
+ *
+ * @see <a href='https://codereview.stackexchange.com/questions/166281/find-all-words-in-a-dictionary-that-can-be-made-with-a-string-of-characters-rec'>algorithm</a>
+ */
 public class Scrambler {
 
-    public static void findOptions(String decypheredText, List<String> wordList) {
-        int[] freq = toFreq(decypheredText);
+    public static void findOptions(String decipheredText, List<String> wordList) {
+        int[] freq = toFreq(decipheredText);
         for (String l : wordList) {
-            if (l.length() == decypheredText.length()) {
+            if (l.length() == decipheredText.length()) {
                 int[] freqIn = toFreq(l);
                 if (matches(freq, freqIn)) {
-                    System.out.println(l);
+                    System.out.println(l); // TODO: 11/9/2018 return a list of results instead of print
                 }
             }
         }
