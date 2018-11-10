@@ -11,16 +11,18 @@ import java.util.List;
  */
 public class Scrambler {
 
-    public static void findOptions(String decipheredText, List<String> wordList) {
+    public static String findOptions(String decipheredText, List<String> wordList) {
         int[] freq = toFreq(decipheredText);
         for (String l : wordList) {
             if (l.length() == decipheredText.length()) {
                 int[] freqIn = toFreq(l);
                 if (matches(freq, freqIn)) {
-                    System.out.println(l); // TODO: 11/9/2018 return a list of results instead of print
+                    System.out.println(l);
+                    return l; // TODO: 11/9/2018 return a list of results instead of print
                 }
             }
         }
+        return "";
     }
 
     /**
