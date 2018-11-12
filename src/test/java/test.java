@@ -25,8 +25,10 @@ public class test {
 //        System.out.println(new KeywordCipher().encrypt("glanoity", "designatory"));
 //
 //        System.out.println(new KeywordCipher().decrypt("ABDFHOPX", "designatory"));
+
+        List<String> words = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("words/words_alpha.txt"), StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
 //
-        List<String> keywords = new WordFind().findWord(".....n.....*");
+        List<String> keywords = new WordFind().findWord(".....n.....*", words);
 
         for (String keyword : keywords) {
             System.out.println(keyword);
@@ -38,9 +40,10 @@ public class test {
     @Test
     public void testComplete() {
 
-        List<String> keywords = new WordFind().findWord(".....n..o..*");
-
         List<String> words = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("words/words_alpha.txt"), StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
+
+        List<String> keywords = new WordFind().findWord(".....n..o..*", words);
+
 
         for (String keyword : keywords) {
 
