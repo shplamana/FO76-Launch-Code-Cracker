@@ -14,10 +14,6 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
         </rowConstraints>
-        <TextArea fx:id="cipherText" prefHeight="200.0" prefWidth="200.0" promptText="Cipher Text"
-                  GridPane.columnIndex="1"/>
-        <TextArea fx:id="pattern" prefHeight="200.0" prefWidth="200.0" promptText="Pattern" GridPane.columnIndex="1"
-                  GridPane.rowIndex="1"/>
         <TextArea fx:id="solutions" prefHeight="200.0" prefWidth="200.0" promptText="Solutions" GridPane.columnIndex="1"
                   GridPane.rowIndex="2"/>
         <AnchorPane>
@@ -30,5 +26,36 @@
         <AnchorPane GridPane.rowIndex="2">
             <Label layoutX="111.0" layoutY="50.0" text="Label"/>
         </AnchorPane>
+        <BorderPane GridPane.columnIndex="1">
+            <center>
+                <HBox alignment="CENTER">
+                    <children>
+                        <TextField/>
+                        <TextField/>
+                        <TextField/>
+                        <TextField/>
+                        <TextField/>
+                        <TextField/>
+                        <TextField/>
+                        <TextField/>
+                    </children>
+                </HBox>
+            </center>
+            <top>
+                <Label text="Silo Codes" BorderPane.alignment="CENTER"/>
+            </top>
+        </BorderPane>
+        <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <center>
+                <HBox alignment="CENTER">
+                    <children>
+                        <TextField/>
+                    </children>
+                </HBox>
+            </center>
+            <top>
+                <Label text="Pattern" BorderPane.alignment="CENTER"/>
+            </top>
+        </BorderPane>
     </GridPane>
 </AnchorPane>

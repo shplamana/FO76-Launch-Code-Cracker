@@ -50,4 +50,31 @@ public class test {
         }
 
     }
+
+    @Test
+    public void testSubstitution() throws Exception {
+
+        StringBuilder ciphered = new StringBuilder("ABDFHOPX");
+        StringBuilder code = new StringBuilder("06828161");
+        StringBuilder deciphered = new StringBuilder("GLANOITY ");
+        StringBuilder term = new StringBuilder("ANTILOGY ");
+        StringBuilder codeSolution = new StringBuilder();
+
+        for (int i = 0; i < ciphered.length(); i++) {
+
+            codeSolution
+                    .append(
+                            code.charAt(
+                                    deciphered.indexOf(
+                                            term.substring(i, i + 1)
+                                    )
+                            )
+                    )
+                    .append(" ");
+        }
+
+        System.out.println(codeSolution);
+
+    }
+
 }
