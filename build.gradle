@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-group 'fo76'
+group 'fo76-lcc'
 version '0.0.1'
 
 sourceCompatibility = 1.8
