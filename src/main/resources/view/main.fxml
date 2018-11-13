@@ -89,7 +89,7 @@
                         </HBox>
                     </center>
                     <top>
-                        <Label text="Pattern" BorderPane.alignment="CENTER"/>
+                        <Label text="Keyword Pattern" BorderPane.alignment="CENTER"/>
                     </top>
                     <GridPane.margin>
                         <Insets/>

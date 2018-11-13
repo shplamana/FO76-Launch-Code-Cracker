@@ -1,6 +1,23 @@
 # Fallout 76 Launch Code Cracker
 Simple program for cracking the launch codes to Fallout 76's nuclear silos.
 
+## How to use it
+Simply enter the letters in the order they appear from top to bottom in the top boxes labelled Letters.
+Put the numbers of each associated letter in the boxes labelled Numbers.  
+
+Enter a pattern into the Keyword Pattern text field. Note: It uses normal regex constructs, e.g. ....n.... will
+find all nine letter words with an 'n' at the 5th position. If the keyword is designatory, and you only
+have the 'n' and 'o', you would then enter .....n..o.. into the field, so every unknown character in the
+keyword is replaced with a period.
+
+Hit the Crack button and wait until the text area labelled Launch Code Solutions is populated. Note: 
+This may take a good amount of time depending on how many letters have been revealed in the bunker.
+
+## Limitations
+This is very early stages and I've only spent a day or two working on it, so expect it to be slow on 
+less letter filled patterns. So far in testing, it'll crunch all the codes with a single letter pattern,
+but it is a hungry beast and I've seen it eat 3GB of memory.
+
 ## F.A.Q.
 
 ### What does it do?
