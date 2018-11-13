@@ -3,8 +3,9 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.aion.gui.controller.main">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0"
+            prefWidth="725.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.aion.gui.controller.MainController">
     <BorderPane>
         <center>
             <GridPane prefHeight="400.0" prefWidth="600.0">
@@ -79,7 +80,11 @@
                     <center>
                         <HBox alignment="CENTER">
                             <children>
-                                <TextField fx:id="pattern"/>
+                                <TextField fx:id="pattern">
+                                    <tooltip>
+                                        <Tooltip text="Use regex constructs (e.g. ....n....)"/>
+                                    </tooltip>
+                                </TextField>
                             </children>
                         </HBox>
                     </center>
