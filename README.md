@@ -46,6 +46,7 @@ Just copy and paste this into the github issue dialog.
 
 \# [Summary/Title]  
 \* [description of the issue]  
+\* [the silo codes and pattern you were using]  
 \* [error if any]  
 \* [specs of your machine]  
 \* [OS]  
