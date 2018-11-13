@@ -18,8 +18,8 @@ public class MainModel {
 
     public String execute(String cipherText, String cipherCode, String pattern) {
 
-        cipherText = "ABDFHOPX"; // debug
-        cipherCode = "06828161"; // debug
+//        cipherText = "ABDFHOPX"; // debug
+//        cipherCode = "06828161"; // debug
         String finalCipherText = cipherText;
         String finalCipherCode = cipherCode;
 
