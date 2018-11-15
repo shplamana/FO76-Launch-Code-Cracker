@@ -10,21 +10,21 @@ public class KeywordCipher {
         int valEnc;
         char newEnc;
 
-        String encrypted = "";
+        StringBuilder encrypted = new StringBuilder();
         key = key.toLowerCase();
         text = text.toLowerCase();
 
         //replace repeated characters in key
         key = key.replaceAll("(.)(?=.*\\1)", "");
-        String newValue = key;
+        StringBuilder newValue = new StringBuilder(key);
 
         // loop the value and add the rest to newValue
         for (int i = 0; i < alphabet.length(); i++) {
             charEnc = alphabet.charAt(i);
             // check if char exixt in the new key
-            if (newValue.indexOf(charEnc) < 0) {
+            if (newValue.toString().indexOf(charEnc) < 0) {
                 // add the char to new key if is not there
-                newValue += alphabet.charAt(i);
+                newValue.append(alphabet.charAt(i));
             }
         }
 
@@ -35,9 +35,9 @@ public class KeywordCipher {
             valEnc = alphabet.indexOf(charEnc);
             // pick the character of the corresponding newvalue index
             newEnc = newValue.charAt(valEnc);
-            encrypted += newEnc;
+            encrypted.append(newEnc);
         }
-        return encrypted.toLowerCase();
+        return encrypted.toString().toLowerCase();
     }
 
     public String decrypt(String text, String key) {
@@ -46,21 +46,21 @@ public class KeywordCipher {
         int valEnc;
         char newEnc;
 
-        String decrypted = "";
+        StringBuilder decrypted = new StringBuilder();
         key = key.toLowerCase();
         text = text.toLowerCase();
 
         //replace repeated characters in key
         key = key.replaceAll("(.)(?=.*\\1)", "");
-        String newValue = key;
+        StringBuilder newValue = new StringBuilder(key);
 
         // loop the value and add the rest to newValue
         for (int i = 0; i < alphabet.length(); i++) {
             charEnc = alphabet.charAt(i);
             // check if char exixt in the new key
-            if (newValue.indexOf(charEnc) < 0) {
+            if (newValue.toString().indexOf(charEnc) < 0) {
                 // add the char to new key if is not there
-                newValue += alphabet.charAt(i);
+                newValue.append(alphabet.charAt(i));
             }
         }
 
@@ -68,12 +68,12 @@ public class KeywordCipher {
         for (int i = 0; i < text.length(); i++) {
             charEnc = text.charAt(i);
             // check the index of the character at the main alphabet string
-            valEnc = newValue.indexOf(charEnc);
+            valEnc = newValue.toString().indexOf(charEnc);
             // pick the character of the corresponding newvalue index
             newEnc = alphabet.charAt(valEnc);
-            decrypted += newEnc;
+            decrypted.append(newEnc);
         }
-        return decrypted.toLowerCase();
+        return decrypted.toString().toLowerCase();
     }
 
 }

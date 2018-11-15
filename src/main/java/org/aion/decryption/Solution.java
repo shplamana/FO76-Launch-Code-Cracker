@@ -50,4 +50,5 @@ public class Solution {
         this.codeword = codeword;
         return this;
     }
+
 }

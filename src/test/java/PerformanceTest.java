@@ -1,6 +1,6 @@
-package org.aion.gui.model;
-
 import org.aion.decryption.*;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -9,38 +9,63 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MainModel {
 
-    public String execute(String cipherText, String cipherCode, String pattern) {
+public class PerformanceTest {
 
-        // Load the dictionary
-        List<String> words = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/words/words_alpha_no_dupes.txt"), StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
+    private String pattern = ".....n.*";
+    private String cipherText = "ABDFHOPX";
+    private String cipherCode = "06828161";
+
+    private List<String> words;
+    private List<String> keywords;
+    private List<String> wordsWeWant;
+    private List<Solution> solutionsList;
+
+    @BeforeTest
+    public void setUp() {
+
+        words = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/words/words_alpha_no_dupes.txt"), StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
+
+    }
+
+    @Test
+    public void testWordFind() {
 
         // Find possible keywords
-        List<String> keywords = new WordFind().findWord(pattern, words);
+        keywords = new WordFind().findWord(pattern, words);
 
         // Find keywords that match our cipher text length
-        List<String> wordsWeWant = new ArrayList<>();
+        wordsWeWant = new ArrayList<>();
         for (String word : words) {
             if (word.length() == cipherText.length()) {
                 wordsWeWant.add(word);
             }
         }
 
+    }
+
+    @Test(dependsOnMethods = "testWordFind")
+    public void testKeywordCipher() {
         // Decipher with all possible keywords
-        List<Solution> solutionsList = new ArrayList<>();
+        solutionsList = new ArrayList<>();
         for (String keyword : keywords) {
             solutionsList.add(
                     new Solution(cipherText, new KeywordCipher().decrypt(cipherText, keyword), "")
             );
         }
 
-//        for (Solution solution : solutionsList) {
-//            solution.setCodeword(Scrambler.unscramble(solution.getDecoded(), wordsWeWant));
-//        }
+    }
+
+    @Test(dependsOnMethods = "testKeywordCipher")
+    public void testScrambler() {
 
         // Unscramble deciphered text
         solutionsList = Scrambler.unscramble(solutionsList, wordsWeWant);
+
+    }
+
+    @Test(dependsOnMethods = "testScrambler")
+    public void testSubstitution() {
 
         // Do the text/cipher substitution
         List<String> codeSolutions = new ArrayList<>();
@@ -52,8 +77,9 @@ public class MainModel {
             }
         }
 
-        return String.join("\n", codeSolutions);
+        System.out.println(String.join("\n", codeSolutions));
 
     }
+
 
 }

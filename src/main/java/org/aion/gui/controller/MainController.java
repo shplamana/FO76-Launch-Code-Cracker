@@ -31,7 +31,12 @@ public class MainController {
 
     public void execute(ActionEvent actionEvent) {
 
-        solutions.setText(new MainModel().execute(getCipherText(), getCipherCode(), pattern.getText()));
+        solutions.setText("Waiting for solutions....");
+
+        new Thread(() -> solutions.setText(new MainModel().execute(getCipherText(), getCipherCode(), pattern.getText()))).start();
+
+// debug
+//        new Thread(() -> solutions.setText(new MainModel().execute("ABDFHOPX", "06828161", pattern.getText()))).start();
 
     }
 
