@@ -108,7 +108,7 @@ public class test {
     @Test
     public void testMainModel() {
 
-        new MainModel().execute("ABDFHOPX", "06828161", ".....n..o..");
+        new MainModel().execute(null, "ABDFHOPX", "06828161", ".....n..o..");
 
     }
 

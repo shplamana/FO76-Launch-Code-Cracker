@@ -1,5 +1,6 @@
 package org.aion.gui.model;
 
+import javafx.scene.control.ToggleGroup;
 import org.aion.decryption.*;
 
 import java.io.BufferedReader;
@@ -11,21 +12,31 @@ import java.util.stream.Collectors;
 
 public class MainModel {
 
-    public String execute(String cipherText, String cipherCode, String pattern) {
+    public String execute(ToggleGroup dict, String cipherText, String cipherCode, String pattern) {
+
+        String keywordsPath = null;
+        String wordsPath = null;
+
+        if (dict.getSelectedToggle() == dict.getToggles().get(0)) {
+
+            keywordsPath = "/words/words_alpha_no_dupes.txt";
+            wordsPath = "/words/words_alpha_8.txt";
+
+        } else if (dict.getSelectedToggle() == dict.getToggles().get(1)) {
+
+            keywordsPath = "/words/words_alpha.txt";
+            wordsPath = "/words/words_alpha.txt";
+
+        }
 
         // Load the dictionary
-        List<String> words = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/words/words_alpha_no_dupes.txt"), StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
+        List<String> words = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(keywordsPath), StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
 
         // Find possible keywords
         List<String> keywords = new WordFind().findWord(pattern, words);
 
-        // Find keywords that match our cipher text length
-        List<String> wordsWeWant = new ArrayList<>();
-        for (String word : words) {
-            if (word.length() == cipherText.length()) {
-                wordsWeWant.add(word);
-            }
-        }
+        // Get a list of words that match our cipher text length
+        List<String> wordsWeWant = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(wordsPath), StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
 
         // Decipher with all possible keywords
         List<Solution> solutionsList = new ArrayList<>();
@@ -34,10 +45,6 @@ public class MainModel {
                     new Solution(cipherText, new KeywordCipher().decrypt(cipherText, keyword), "")
             );
         }
-
-//        for (Solution solution : solutionsList) {
-//            solution.setCodeword(Scrambler.unscramble(solution.getDecoded(), wordsWeWant));
-//        }
 
         // Unscramble deciphered text
         solutionsList = Scrambler.unscramble(solutionsList, wordsWeWant);
@@ -52,7 +59,11 @@ public class MainModel {
             }
         }
 
-        return String.join("\n", codeSolutions);
+        if (!codeSolutions.isEmpty()) {
+            return String.join("\n", codeSolutions);
+        } else {
+            return "No solutions found, please check input";
+        }
 
     }
 

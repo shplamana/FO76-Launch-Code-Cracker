@@ -1,9 +1,7 @@
 package org.aion.gui.controller;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.aion.gui.model.MainModel;
 
 public class MainController {
@@ -28,15 +26,20 @@ public class MainController {
     public TextField pattern;
     public TextArea solutions;
     public Button execute;
+    public RadioButton optDict;
+    public RadioButton comDict;
+
+    public ToggleGroup dict;
 
     public void execute(ActionEvent actionEvent) {
 
         solutions.setText("Waiting for solutions....");
 
-        new Thread(() -> solutions.setText(new MainModel().execute(getCipherText(), getCipherCode(), pattern.getText()))).start();
+        new Thread(() -> solutions.setText(new MainModel().execute(dict, getCipherText(), getCipherCode(), pattern.getText()))).start();
 
-// debug
-//        new Thread(() -> solutions.setText(new MainModel().execute("ABDFHOPX", "06828161", pattern.getText()))).start();
+//        debug
+//        new Thread(() -> solutions.setText(new MainModel().execute(dict, "ABDFHOPX", "06828161", pattern.getText()))).start();
+
 
     }
 
