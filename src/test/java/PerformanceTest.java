@@ -21,10 +21,21 @@ public class PerformanceTest {
     private List<String> wordsWeWant;
     private List<Solution> solutionsList;
 
+    String keywordsPath = null;
+    String wordsPath = null;
+
     @BeforeTest
     public void setUp() {
 
-        words = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/words/words_alpha_no_dupes.txt"), StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
+//        keywordsPath = "/words/words_alpha_no_dupes.txt";
+//        wordsPath = "/words/words_alpha_8.txt";
+
+
+        keywordsPath = "/words/words_alpha.txt";
+        wordsPath = "/words/words_alpha.txt";
+
+
+        words = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(keywordsPath), StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
 
     }
 
@@ -34,18 +45,14 @@ public class PerformanceTest {
         // Find possible keywords
         keywords = new WordFind().findWord(pattern, words);
 
-        // Find keywords that match our cipher text length
-        wordsWeWant = new ArrayList<>();
-        for (String word : words) {
-            if (word.length() == cipherText.length()) {
-                wordsWeWant.add(word);
-            }
-        }
+        // Get a list of words that match our cipher text length
+        wordsWeWant = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(wordsPath), StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
 
     }
 
     @Test(dependsOnMethods = "testWordFind")
     public void testKeywordCipher() {
+
         // Decipher with all possible keywords
         solutionsList = new ArrayList<>();
         for (String keyword : keywords) {

@@ -22,17 +22,23 @@ public class Scrambler {
 
             for (String l : wordList) {
 
-                int[] freqIn = toFreq(l);
+                if (l.length() == solution.getDecoded().length()) {
 
-                if (matches(freq, freqIn)) {
-                    System.out.println(l);
-                    codewords.add(new Solution().withEncoded(solution.getEncoded()).withDecoded(solution.getDecoded()).withCodeword(l));
+                    int[] freqIn = toFreq(l);
+
+                    if (matches(freq, freqIn)) {
+                        System.out.println(l);
+                        codewords.add(new Solution().withEncoded(solution.getEncoded()).withDecoded(solution.getDecoded()).withCodeword(l));
+                    }
+
                 }
 
             }
+
         }
 
         return codewords;
+
     }
 
     /**
