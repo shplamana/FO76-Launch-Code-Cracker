@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 
 public class PerformanceTest {
 
-    private String pattern = ".....n.*";
-    private String cipherText = "ABDFHOPX";
-    private String cipherCode = "06828161";
+    private String pattern = "stewarding";
+    private String cipherText = "achknops";
+    private String cipherCode = "08380495";
 
     private List<String> words;
     private List<String> keywords;

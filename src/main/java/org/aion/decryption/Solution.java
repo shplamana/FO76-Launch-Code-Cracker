@@ -6,6 +6,9 @@ public class Solution {
     private String decoded;
     private String codeword;
 
+    public Solution() {
+    }
+
     public Solution(String encoded, String decoded, String codeword) {
         this.encoded = encoded;
         this.decoded = decoded;

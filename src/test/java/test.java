@@ -28,6 +28,11 @@ public class test {
 
         List<String> words = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("words/words_alpha.txt"), StandardCharsets.UTF_8)).lines().collect(Collectors.toList());
 
+        // Find possible keywords
+        List<String> keywords = new WordFind().findWord("s..wa....g.*", words);
+
+        System.out.println(keywords);
+
 //        for (String word : words) {
 //
 //            int[] freq = new int[26];
@@ -45,13 +50,13 @@ public class test {
 //
 //        }
 
-        for (String word : words) {
-
-            if (word.length() == 8) {
-                System.out.println(word);
-            }
-
-        }
+//        for (String word : words) {
+//
+//            if (word.length() == 8) {
+//                System.out.println(word);
+//            }
+//
+//        }
 
 //        List<String> keywords = new WordFind().findWord(".....n.....*", words);
 //

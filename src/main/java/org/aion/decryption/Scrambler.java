@@ -26,7 +26,7 @@ public class Scrambler {
 
                 if (matches(freq, freqIn)) {
                     System.out.println(l);
-                    codewords.add(solution.withCodeword(l));
+                    codewords.add(new Solution().withEncoded(solution.getEncoded()).withDecoded(solution.getDecoded()).withCodeword(l));
                 }
 
             }
